@@ -41,7 +41,7 @@ class AWeaponSystemCharacter : public ACharacter, public IAbilitySystemInterface
 public:
 	AWeaponSystemCharacter();
 	
-	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override
+	virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override
 	{
 		return AbilitySystemComponent;
 	}
