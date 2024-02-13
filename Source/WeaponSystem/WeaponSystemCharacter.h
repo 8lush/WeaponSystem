@@ -5,11 +5,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "AbilitySystemInterface.h"
 #include "WeaponSystemCharacter.generated.h"
 
 
 UCLASS(config=Game)
-class AWeaponSystemCharacter : public ACharacter
+class AWeaponSystemCharacter : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -40,8 +41,18 @@ class AWeaponSystemCharacter : public ACharacter
 public:
 	AWeaponSystemCharacter();
 	
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override
+	{
+		return AbilitySystemComponent;
+	}
 
 protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "GAS", meta = (AllowPrivateAccess = "true"))
+	class UAbilitySystemComponent* AbilitySystemComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "GAS", meta = (AllowPrivateAccess = "true"))
+	const class UBasicCharacterAttributeSet* BasicAttributeSet;
 
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
