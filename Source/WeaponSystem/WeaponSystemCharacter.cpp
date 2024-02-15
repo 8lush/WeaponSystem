@@ -60,18 +60,18 @@ void AWeaponSystemCharacter::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Attempting to assign BasicAttributeSet!"));
+	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Yellow, TEXT("Attempting to assign BasicAttributeSet!"));
 	if(IsValid(AbilitySystemComponent))
 	{
 		BasicAttributeSet = AbilitySystemComponent->GetSet<UBasicCharacterAttributeSet>();
 
 		if(IsValid(BasicAttributeSet))
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("Successfully assgined BasicAttributeSet!"));
+			GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Green, TEXT("Successfully assgined BasicAttributeSet!"));
 		}
 		else
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("Failed to assgined BasicAttributeSet!"));
+			GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("Failed to assgined BasicAttributeSet!"));
 		}
 
 	}
