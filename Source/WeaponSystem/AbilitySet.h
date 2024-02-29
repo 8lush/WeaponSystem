@@ -14,7 +14,7 @@
 UENUM(BlueprintType)
 enum class EAbilityInput
 {
-	None = 0 UMETA(),
+	None = 0 UMETA(Hidden),
 	Jump = 1,
 	Primary = 2,
 	Secondary = 3,

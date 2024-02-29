@@ -55,6 +55,11 @@ AWeaponSystemCharacter::AWeaponSystemCharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
+void AWeaponSystemCharacter::GrantAbilitySet(UAbilitySet* AbilitySet)
+{
+	AbilitySet->GrantAbilitiesToAbilitySystem(AbilitySystemComponent);
+}
+
 void AWeaponSystemCharacter::BeginPlay()
 {
 	// Call the base class  

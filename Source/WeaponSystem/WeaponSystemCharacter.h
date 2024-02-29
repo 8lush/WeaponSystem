@@ -4,10 +4,41 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "InputMappingContext.h"
 #include "InputActionValue.h"
 #include "AbilitySystemInterface.h"
+#include "AbilitySet.h"
 #include "WeaponSystemCharacter.generated.h"
 
+// UENUM(BlueprintType)
+// enum class EAbilityInput
+// {
+// 	None = 0 UMETA(Hidden),
+// 	Jump = 1,
+// 	Primary = 2,
+// 	Secondary = 3,
+// };
+
+USTRUCT()
+struct FAbilityInputToInputActionBinding
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditDefaultsOnly)
+	UInputAction* InputAction;
+
+	UPROPERTY(EditDefaultsOnly)
+	EAbilityInput AbilityInput;
+};
+
+USTRUCT()
+struct FAbilityInputBindings
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditDefaultsOnly, Category = "Inputs")
+	TArray<FAbilityInputToInputActionBinding> Bindings;
+};
 
 UCLASS(config=Game)
 class AWeaponSystemCharacter : public ACharacter, public IAbilitySystemInterface
@@ -41,6 +72,9 @@ class AWeaponSystemCharacter : public ACharacter, public IAbilitySystemInterface
 public:
 	AWeaponSystemCharacter();
 	
+	UFUNCTION(BlueprintCallable, Category = "AbilitySet")
+	void GrantAbilitySet(UAbilitySet* AbilitySet);
+
 	virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override
 	{
 		return AbilitySystemComponent;
