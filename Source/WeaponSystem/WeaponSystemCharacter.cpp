@@ -55,10 +55,6 @@ AWeaponSystemCharacter::AWeaponSystemCharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
-void AWeaponSystemCharacter::GrantAbilitySet(UAbilitySet* AbilitySet)
-{
-	AbilitySet->GrantAbilitiesToAbilitySystem(AbilitySystemComponent);
-}
 
 void AWeaponSystemCharacter::BeginPlay()
 {
@@ -109,6 +105,11 @@ void AWeaponSystemCharacter::SetupPlayerInputComponent(class UInputComponent* Pl
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AWeaponSystemCharacter::Look);
 
+		for(const FAbilityInputToInputActionBinding& binding : Bindings)
+		{
+			EnhancedInputComponent->BindAction(binding.InputAction, ETriggerEvent::Triggered, this, &ThisClass::AbilityInputBindingPressedHandler, binding.AbilityInput);
+			EnhancedInputComponent->BindAction(binding.InputAction, ETriggerEvent::Completed, this, &ThisClass::AbilityInputBindingReleasedHandler, binding.AbilityInput);
+		}
 	}
 
 }
@@ -149,6 +150,20 @@ void AWeaponSystemCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
+void AWeaponSystemCharacter::GrantAbilitySet(UAbilitySet* AbilitySet)
+{
+	AbilitySet->GrantAbilitiesToAbilitySystem(AbilitySystemComponent);
+}
+
+void AWeaponSystemCharacter::AbilityInputBindingPressedHandler(EAbilityInput abilityInput)
+{
+	AbilitySystemComponent->AbilityLocalInputPressed(static_cast<uint32>(abilityInput));
+}
+
+void AWeaponSystemCharacter::AbilityInputBindingReleasedHandler(EAbilityInput abilityInput)
+{
+	AbilitySystemComponent->AbilityLocalInputReleased(static_cast<uint32>(abilityInput));
+}
 
 
 

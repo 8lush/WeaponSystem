@@ -40,7 +40,7 @@ public:
  * 
  */
 UCLASS()
-class WEAPONSYSTEM_API UAbilitySet : public UDataAsset
+class WEAPONSYSTEM_API UAbilitySet : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
 	

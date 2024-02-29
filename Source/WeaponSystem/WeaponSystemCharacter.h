@@ -10,14 +10,6 @@
 #include "AbilitySet.h"
 #include "WeaponSystemCharacter.generated.h"
 
-// UENUM(BlueprintType)
-// enum class EAbilityInput
-// {
-// 	None = 0 UMETA(Hidden),
-// 	Jump = 1,
-// 	Primary = 2,
-// 	Secondary = 3,
-// };
 
 USTRUCT()
 struct FAbilityInputToInputActionBinding
@@ -31,14 +23,14 @@ struct FAbilityInputToInputActionBinding
 	EAbilityInput AbilityInput;
 };
 
-USTRUCT()
-struct FAbilityInputBindings
-{
-	GENERATED_BODY()
+// USTRUCT()
+// struct FAbilityInputBindings
+// {
+// 	GENERATED_BODY()
 
-	UPROPERTY(EditDefaultsOnly, Category = "Inputs")
-	TArray<FAbilityInputToInputActionBinding> Bindings;
-};
+// 	UPROPERTY(EditDefaultsOnly, Category = "Inputs")
+// 	TArray<FAbilityInputToInputActionBinding> Bindings;
+// };
 
 UCLASS(config=Game)
 class AWeaponSystemCharacter : public ACharacter, public IAbilitySystemInterface
@@ -75,6 +67,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "AbilitySet")
 	void GrantAbilitySet(UAbilitySet* AbilitySet);
 
+	void AbilityInputBindingPressedHandler(EAbilityInput abilityInput);
+
+	void AbilityInputBindingReleasedHandler(EAbilityInput abilityInput);
+
 	virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override
 	{
 		return AbilitySystemComponent;
@@ -87,6 +83,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "GAS", meta = (AllowPrivateAccess = "true"))
 	const class UBasicCharacterAttributeSet* BasicAttributeSet;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Inputs")
+ 	TArray<FAbilityInputToInputActionBinding> Bindings;
 
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
