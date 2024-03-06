@@ -9,6 +9,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "GameplayAbilitySpec.h"
 #include "AbilitySystemComponent.h"
 #include "BasicCharacterAttributeSet.h"
 
@@ -150,10 +151,19 @@ void AWeaponSystemCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
-void AWeaponSystemCharacter::GrantAbilitySet(UAbilitySet* AbilitySet)
+TArray<FGameplayAbilitySpecHandle> AWeaponSystemCharacter::GrantAbilitySet(UAbilitySet* AbilitySet)
 {
-	AbilitySet->GrantAbilitiesToAbilitySystem(AbilitySystemComponent);
+	TArray<FGameplayAbilitySpecHandle> handles;
+
+	handles = AbilitySet->GrantAbilitiesToAbilitySystem(AbilitySystemComponent);
+
+	return handles;
 }
+
+// void AWeaponSystemCharacter::GrantAbilitySet(UAbilitySet* AbilitySet)
+// {
+// 	AbilitySet->GrantAbilitiesToAbilitySystem(AbilitySystemComponent);
+// }
 
 void AWeaponSystemCharacter::AbilityInputBindingPressedHandler(EAbilityInput abilityInput)
 {

@@ -65,7 +65,10 @@ public:
 	AWeaponSystemCharacter();
 	
 	UFUNCTION(BlueprintCallable, Category = "AbilitySet")
-	void GrantAbilitySet(UAbilitySet* AbilitySet);
+	TArray<FGameplayAbilitySpecHandle> GrantAbilitySet(UAbilitySet* AbilitySet);
+
+	//UFUNCTION(BlueprintCallable, Category = "AbilitySet")
+	//void GrantAbilitySet(UAbilitySet* AbilitySet);
 
 	void AbilityInputBindingPressedHandler(EAbilityInput abilityInput);
 
