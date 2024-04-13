@@ -12,6 +12,7 @@
 #include "GameplayAbilitySpec.h"
 #include "AbilitySystemComponent.h"
 #include "BasicCharacterAttributeSet.h"
+#include "Engine.h"
 
 
 //////////////////////////////////////////////////////////////////////////
