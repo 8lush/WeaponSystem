@@ -1,0 +1,12 @@
+Weapon Editor:
+To access the weapon editor, navigate to Content/EditorUtilityWidget. Find "WeaponEditor" within this folder, right click it and select "Run Editor Utility Widget".
+
+Prototypes:
+To access the prototypes, navigate to Content/Prototypes within the project. This folder holds two levels: DS_Prototype and WAR_Prototype. These are weapon ranges with a few weapons created in different styles to test on test dummies. 
+
+Github Link:
+https://github.com/8lush/WeaponSystem
+
+Credits:
+Ethan Nicholson (Abertay GDP 4th year) - Gun models
+Zapsplat - sound effects.
