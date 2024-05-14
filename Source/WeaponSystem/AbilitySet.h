@@ -23,16 +23,16 @@ enum class EAbilityInput
 /**
  * 
  */
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FAbilitySetItem
 {
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(EditDefaultsOnly, Category = "Ability")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability")
 	TSubclassOf<UGameplayAbility> GameplayAbility;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Ability")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ability")
 	EAbilityInput InputKey;
 };
 

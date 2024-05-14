@@ -7,7 +7,6 @@
 #include "MyBlueprintFunctionLibrary.generated.h"
 
 
-
 UCLASS()
 class WEAPONSYSTEM_API UMyBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 {
